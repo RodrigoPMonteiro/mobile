@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { FlatList, SafeAreaView, View, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 
 import api from './services/api';
 
@@ -40,9 +40,18 @@ export default function App() {
                     data={projects}
                     keyExtractor={project => project.id}
                     renderItem={({ item: project }) => (
+                    <View style={styles.projectContainer}>
                         <Text style={styles.project}>
-                            {project.title}
+                                {project.title}
                         </Text>
+                        <TouchableOpacity
+                            style={styles.buttonDelete}
+                            onPress={() => handleRemoveProject(project.id)}
+                            testID={`like-button-${project.id}`}
+                        >
+                            <Text style={styles.buttonTextDel}>Apagar arquivo</Text>
+                        </TouchableOpacity>
+                    </View>
                     )}
                 >
                 </FlatList>
@@ -64,7 +73,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#7159c1'
     },
     project: {
-        color: '#FFF',
+        color: 'black',
         fontSize:20,
         fontWeight :'bold'
     },
@@ -78,10 +87,34 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
 
+    buttonDelete: {
+        backgroundColor: 'purple',
+        margin:20,
+        height: 50,
+        borderRadius: 4,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    buttonTextDel: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: 'white'
+    },
+
     buttonText: {
         fontWeight: 'bold',
         fontSize: 16
-    }
+    },
 
-
+    title: {
+        flexDirection: "row",
+        marginTop: 10,
+      },
+      projectContainer: {
+        marginBottom: 15,
+        marginHorizontal: 15,
+        backgroundColor: "#fff",
+        padding: 20,
+      },
 });
