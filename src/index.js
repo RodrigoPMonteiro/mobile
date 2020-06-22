@@ -49,7 +49,7 @@ export default function App() {
                             onPress={() => handleRemoveProject(project.id)}
                             testID={`like-button-${project.id}`}
                         >
-                            <Text style={styles.buttonTextDel}>Apagar arquivo</Text>
+                            <Text style={styles.buttonTextDel}>Apagar Projeto</Text>
                         </TouchableOpacity>
                     </View>
                     )}
